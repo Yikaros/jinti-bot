@@ -77,7 +77,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 			case *linebot.TextMessage:
 				switch {
 //查出勤					
-					case Contains(message.Text,"10")||Contains(message.Text,"20"):
+					case Contains(message.Text,"幫我查"):
 						i:=0
 						ppl := message.Text
 						for i<=len(list_array){
