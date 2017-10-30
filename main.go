@@ -85,10 +85,11 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 							menu = strings.Split(list_array[i], "@")
 							if menu[0] == ppl{
 								msg= "\n" + msg + menu[0]
+								brerak
 							}
 							i++
 						}
-						bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(ppl + "\n")).Do() 
+						bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(msg + "\n")).Do() 
 //查庫存的code
 					case Contains(message.Text,"庫存"):
 						i:=0
