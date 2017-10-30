@@ -59,7 +59,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 	var list string
 	var work string
 	var stock string
-	var msg string
+	//var msg string
     	for {
         	a, _, c := br.ReadLine()
         	if c == io.EOF {
@@ -84,11 +84,10 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 							var menu []string
 							menu = strings.Split(list_array[i], "@")
 							if menu[0] == ppl{
-								msg= "\n" + msg + menu[1]
+								bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(menu[1] + "\n")).Do() 
 							}
 							i++
 						}
-						bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(msg + "\n")).Do() 
 //查庫存的code
 					case Contains(message.Text,"庫存"):
 						i:=0
