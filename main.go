@@ -79,7 +79,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				itemname := message.Text
 				for i<=len(list_array){
 					var menu []string
-					menu = strings.Split(list_array[i], " ")
+					menu = strings.Split(list_array[i], "@")
 					if menu[0] == itemname{
 						stock=menu[1]
 						work=menu[2]
