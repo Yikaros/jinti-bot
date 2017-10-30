@@ -79,7 +79,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 //查出勤					
 					case Contains(message.Text,"幫我查"):
 						i:=0
-						ppl := message.Text
+						ppl := strings.Replace(message.Text, "幫我查", "", 1)
 						for i<=len(list_array){
 							var menu []string
 							menu = strings.Split(list_array[i], "@")
