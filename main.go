@@ -84,7 +84,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 							var menu []string
 							menu = strings.Split(list_array[i], "@")
 							if menu[0] == ppl{
-								msg= "\n" + msg + menu[0]
+								msg= "\n" + msg + menu[1]
 								break
 							}
 							i++
