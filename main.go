@@ -17,9 +17,11 @@ import (
 	"fmt"
 	"log"
     	"io"
+    	"time"
 	"net/http"
 	"os"
 	"strings"
+	"math/rand"
 
 	"github.com/line/line-bot-sdk-go/linebot"
 )
