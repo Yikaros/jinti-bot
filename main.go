@@ -80,15 +80,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 					case Contains(message.Text,"幫我查"):
 						i:=0
 						ppl := strings.Replace(message.Text, "幫我查", "", 1)
-						for i<=len(list_array){
-							var menu []string
-							menu = strings.Split(list_array[i], "@")
-							if menu[0] == ppl{
-								msg= "\n" + msg + menu[1]
-							}
-							i++
-						}
-						bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(msg)).Do() 
+						bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(ppl + "\n")).Do() 
 //查庫存的code
 					case Contains(message.Text,"庫存"):
 						i:=0
