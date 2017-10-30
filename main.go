@@ -59,7 +59,6 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 	var list string
 	var work string
 	var stock string
-	var ppl string
 	var msg string
     	for {
         	a, _, c := br.ReadLine()
