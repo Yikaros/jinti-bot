@@ -76,17 +76,18 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 			switch message := event.Message.(type) {
 			case *linebot.TextMessage:     
 				i:=0
+				itemname := message.Text
 				for i<=len(list_array){
 					var menu []string
 					menu = strings.Split(list_array[i], " ")
-					if menu[0] == "AAA"{
+					if menu[0] == itemname{
 						stock=menu[1]
 						work=menu[2]
 						break
 					}
 					i++
 				}
-				bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("AAA" + "還有庫存" + stock + "支，在製品" + work + "支")).Do() 
+				bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(itemname + "還有庫存" + stock + "支，在製品" + work + "支")).Do() 
 			}
 
 		}
