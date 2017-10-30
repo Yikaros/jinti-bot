@@ -59,10 +59,8 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 
     	br := bufio.NewReader(fi)
 	var list string
-	var price string
+	var work string
 	var stock string
-	var food string
-	url := "https://raw.githubusercontent.com/Yikaros/LineBotTemplate/master/images/"
     	for {
         	a, _, c := br.ReadLine()
         	if c == io.EOF {
@@ -76,88 +74,21 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 	
 	for _, event := range events {
 		if event.Type == linebot.EventTypeMessage {
-			var cow string
-			r := rand.New(rand.NewSource(time.Now().UnixNano()))
-			cow = url + "cow/" + fmt.Sprintf("%d", r.Intn(10))  + ".jpg"
 
 			switch message := event.Message.(type) {
 			case *linebot.TextMessage:     
-				switch {
-//賣菜的code
-					case Contains(message.Text,"菜")||Contains(message.Text,"葉"):
-						food = ""
-						switch{
-							case Contains(message.Text,"高麗菜"):
-								food = "高麗菜"
-							case Contains(message.Text,"小白菜"):
-								food = "小白菜"
-							
-						}
-						if food != ""{
-							i:=0
-							for i<=len(list_array){
-								var menu []string
-								menu = strings.Split(list_array[i], " ")
-								if menu[0] == food{
-									price=menu[1]
-									stock=menu[2]
-									break
-								}
-								i++
-							}
-							switch{
-								case Contains(message.Text,"多少錢")||Contains(message.Text,"怎麼賣")||Contains(message.Text,"怎麼算"):
-									bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(food + "一斤" + price)).Do() 
-							}
-						}
-//石斑魚的code
-					case Contains(message.Text,"斑")||Contains(message.Text,"班"):
-						food = ""
-						switch{
-							case Contains(message.Text,"龍虎"):
-								food = "龍虎石斑"
-							case Contains(message.Text,"青"):
-								food = "青斑"
-							case Contains(message.Text,"珍珠"):
-								food = "珍珠石斑"
-							default:
-								if Contains(message.Text,"多少錢")||Contains(message.Text,"怎麼賣")||Contains(message.Text,"怎麼算")||Contains(message.Text,"還有多少")||Contains(message.Text,"剩下多少")||Contains(message.Text,"庫存")||Contains(message.Text,"還有幾"){
-									bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("拍謝啦! 我是笨笨的電腦，不知道您要問哪種石斑捏，我們有龍虎石斑、青斑、還有珍珠石斑")).Do()
-								}
-						}
-						i:=0
-						for i<=len(list_array){
-							var menu []string
-							menu = strings.Split(list_array[i], " ")
-							if menu[0] == food{
-								price=menu[1]
-								stock=menu[2]
-								break
-							}
-							i++
-						}
-						switch{
-							case Contains(message.Text,"多少錢")||Contains(message.Text,"怎麼賣")||Contains(message.Text,"怎麼算"):						
-								bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(food + "一斤" + price)).Do() 
-							case Contains(message.Text,"還有多少")||Contains(message.Text,"剩下多少")||Contains(message.Text,"庫存")||Contains(message.Text,"還有幾"):
-								bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(food + "大概還有" + stock + "尾可以買，賣完就沒了喔!! 趕快來電088953096/0939220743黃先生")).Do() 
-						}
-//以下是喇賽的code
-					case Contains(message.Text,"87"):
-						bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("87分，不能再高惹")).Do() 
-					case Contains(message.Text,"母牛"):
-						bot.ReplyMessage(event.ReplyToken, linebot.NewImageMessage(cow,cow)).Do() 
-					case Contains(message.Text,"洗眼"):
-						bot.ReplyMessage(event.ReplyToken, linebot.NewImageMessage(cow,cow)).Do() 
-					case Contains(message.Text,"乳牛"):
-						bot.ReplyMessage(event.ReplyToken, linebot.NewImageMessage(cow,cow)).Do() 
-					case Contains(message.Text,"淨化"):
-						bot.ReplyMessage(event.ReplyToken, linebot.NewImageMessage(cow,cow)).Do() 
-					case Contains(message.Text,"刀塔"):
-						bot.ReplyMessage(event.ReplyToken, linebot.NewImageMessage(url + "6569950-1490833625.jpg", url + "6569950-1490833625.jpg")).Do() 
-					case Contains(message.Text,"黑人問號"):
-						bot.ReplyMessage(event.ReplyToken, linebot.NewImageMessage(url + "blackman.jpg", url + "blackman.jpg")).Do() 
+				i:=0
+				for i<=len(list_array){
+					var menu []string
+					menu = strings.Split(list_array[i], " ")
+					if menu[0] == message{
+						stock=menu[1]
+						work=menu[2]
+						break
+					}
+					i++
 				}
+				bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(message + "還有庫存" + stock + "支，在製品" + work + "支")).Do() 
 			}
 
 		}
