@@ -17,11 +17,9 @@ import (
 	"fmt"
 	"log"
     	"io"
-    	"time"
 	"net/http"
 	"os"
 	"strings"
-	"math/rand"
 
 	"github.com/line/line-bot-sdk-go/linebot"
 )
@@ -81,14 +79,14 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				for i<=len(list_array){
 					var menu []string
 					menu = strings.Split(list_array[i], " ")
-					if menu[0] == message.Test{
+					if menu[0] == "AAA"{
 						stock=menu[1]
 						work=menu[2]
 						break
 					}
 					i++
 				}
-				bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(message.Test + "還有庫存" + stock + "支，在製品" + work + "支")).Do() 
+				bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("AAA" + "還有庫存" + stock + "支，在製品" + work + "支")).Do() 
 			}
 
 		}
