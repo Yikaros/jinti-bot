@@ -17,11 +17,9 @@ import (
 	"fmt"
 	"log"
     	"io"
-    	"time"
 	"net/http"
 	"os"
 	"strings"
-	"math/rand"
 
 	"github.com/line/line-bot-sdk-go/linebot"
 )
@@ -81,7 +79,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				for i<=len(list_array){
 					var menu []string
 					menu = strings.Split(list_array[i], " ")
-					if menu[0] == message{
+					if menu[0] == message.Test{
 						stock=menu[1]
 						work=menu[2]
 						break
