@@ -59,6 +59,8 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 	var list string
 	var work string
 	var stock string
+	var ppl string
+	var msg string
     	for {
         	a, _, c := br.ReadLine()
         	if c == io.EOF {
@@ -72,22 +74,39 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 	
 	for _, event := range events {
 		if event.Type == linebot.EventTypeMessage {
-
 			switch message := event.Message.(type) {
-			case *linebot.TextMessage:     
-				i:=0
-				itemname := message.Text
-				for i<=len(list_array){
-					var menu []string
-					menu = strings.Split(list_array[i], "@")
-					if menu[0] == itemname{
-						stock=menu[1]
-						work=menu[2]
-						break
-					}
-					i++
+			case *linebot.TextMessage:
+				switch {
+//查出勤					
+					case Contains(message.Text,"10")||Contains(message.Text,"20"):
+						i:=0
+						ppl := message.Text
+						for i<=len(list_array){
+							var menu []string
+							menu = strings.Split(list_array[i], "@")
+							if menu[0] == ppl{
+								msg= '\n' + msg + menu[1]
+							}
+							i++
+						}
+						bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(msg)).Do() 
+//查庫存的code
+					case Contains(message.Text,"庫存"):
+						i:=0
+						itemname := message.Text
+						for i<=len(list_array){
+							var menu []string
+							menu = strings.Split(list_array[i], "@")
+							if menu[0] == itemname{
+								stock=menu[1]
+								work=menu[2]
+								break
+							}
+							i++
+						}
+						bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(itemname + "還有庫存" + stock + "支，在製品" + work + "支")).Do() 
 				}
-				bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(itemname + "還有庫存" + stock + "支，在製品" + work + "支")).Do() 
+					
 			}
 
 		}
