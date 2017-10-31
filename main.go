@@ -98,7 +98,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 					case Index(message.Text,"@") == 1:
 						i:=0
 						itemname := message.Text
-						for i<=len(list_array2){
+						for i<=len(list_array2)-1{
 							var menu []string
 							menu = strings.Split(list_array2[i], "$")
 							if menu[0] == itemname{
