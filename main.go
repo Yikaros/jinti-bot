@@ -102,7 +102,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 							var menu []string
 							menu = strings.Split(list_array2[i], "$")
 							if menu[0] == itemname{
-								msg=msg + " \r\n " + menu[1]
+								msg=msg + menu[1]
 							}
 							i++
 						}
