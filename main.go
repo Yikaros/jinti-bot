@@ -95,7 +95,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 			switch message := event.Message.(type) {
 			case *linebot.TextMessage:
 				switch {
-					case Index(message.Text,"@") == 1:
+					case Index(message.Text,"@") == 0:
 						i:=0
 						itemname := message.Text
 						for i<=len(list_array2)-1{
