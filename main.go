@@ -87,7 +87,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 		list = list + "&" + string(a)
     	}
 	
-	var list_array []string
+	var list_array2 []string
 	list_array2 = strings.Split(list, "&")
 	
 	for _, event := range events {
