@@ -76,20 +76,8 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 			switch message := event.Message.(type) {
 			case *linebot.TextMessage:
 				switch {
-//查出勤					
-					case Contains(message.Text,"幫我查"):
-						i:=0
-						ppl := strings.Replace(message.Text, "幫我查", "", 1)
-						for i<=len(list_array){
-							var menu []string
-							menu = strings.Split(list_array[i], "@")
-							if menu[0] == ppl{
-								bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(menu[1] + "\n")).Do() 
-							}
-							i++
-						}
 //查庫存的code
-					case Contains(message.Text,"庫存"):
+					case 1==1:
 						i:=0
 						itemname := message.Text
 						for i<=len(list_array){
