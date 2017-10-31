@@ -57,8 +57,8 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 
     	br := bufio.NewReader(fi)
 	var list string
-	//var work string
-	//var stock string
+	var work string
+	var stock string
 	var msg string
     	for {
         	a, _, c := br.ReadLine()
@@ -68,8 +68,8 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 		list = list + "&" + string(a)
     	}
 	
-	//var list_array []string
-	//list_array = strings.Split(list, "&")
+	var list_array []string
+	list_array = strings.Split(list, "&")
 	
 	fi2, err2 := os.Open("buffer/ppl.txt")
     	if err2 != nil {
@@ -102,27 +102,27 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 							var menu []string
 							menu = strings.Split(list_array2[i], "$")
 							if menu[0] == itemname{
-								msg = menu[1]
+								msg = msg + menu[1] + "\r\n"
 								break
 							}
 							i++
 						}
 						bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(msg)).Do()
 //查庫存的code
-					//default:
-					//	i:=0
-					//	itemname := message.Text
-					//	for i<=len(list_array){
-					//		var menu []string
-					//		menu = strings.Split(list_array[i], "@")
-					//		if menu[0] == itemname{
-					//			stock=menu[1]
-					//			work=menu[2]
-					//			break
-					//		}
-					//		i++
-					//	}
-					//	bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(itemname + "還有庫存" + stock + "支，在製品" + work + "支i")).Do() 
+					default:
+						i:=0
+						itemname := message.Text
+						for i<=len(list_array){
+							var menu []string
+							menu = strings.Split(list_array[i], "@")
+							if menu[0] == itemname{
+								stock=menu[1]
+								work=menu[2]
+								break
+							}
+							i++
+						}
+						bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(itemname + "還有庫存" + stock + "支，在製品" + work + "支i")).Do() 
 				}
 					
 			}
