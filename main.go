@@ -121,7 +121,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 							}
 							i++
 						}
-						bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(itemname + "還有庫存" + stock + "支，在製品" + work + "支i")).Do() 
+						bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(itemname + "還有庫存" + stock + "支，在製品" + work + "支")).Do() 
 				}
 					
 			}
