@@ -57,8 +57,8 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 
     	br := bufio.NewReader(fi)
 	var list string
-	var work string
-	var stock string
+	//var work string
+	//var stock string
 	var msg string
     	for {
         	a, _, c := br.ReadLine()
@@ -68,8 +68,8 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 		list = list + "&" + string(a)
     	}
 	
-	var list_array []string
-	list_array = strings.Split(list, "&")
+	//var list_array []string
+	//list_array = strings.Split(list, "&")
 	
 	fi2, err2 := os.Open("buffer/ppl.txt")
     	if err2 != nil {
