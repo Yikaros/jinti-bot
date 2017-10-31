@@ -109,20 +109,20 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 						}
 						bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(msg)).Do()
 //查庫存的code
-					default:
-						i:=0
-						itemname := message.Text
-						for i<=len(list_array){
-							var menu []string
-							menu = strings.Split(list_array[i], "@")
-							if menu[0] == itemname{
-								stock=menu[1]
-								work=menu[2]
-								break
-							}
-							i++
-						}
-						bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(itemname + "還有庫存" + stock + "支，在製品" + work + "支i")).Do() 
+					//default:
+					//	i:=0
+					//	itemname := message.Text
+					//	for i<=len(list_array){
+					//		var menu []string
+					//		menu = strings.Split(list_array[i], "@")
+					//		if menu[0] == itemname{
+					//			stock=menu[1]
+					//			work=menu[2]
+					//			break
+					//		}
+					//		i++
+					//	}
+					//	bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(itemname + "還有庫存" + stock + "支，在製品" + work + "支i")).Do() 
 				}
 					
 			}
